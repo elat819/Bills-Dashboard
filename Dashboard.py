@@ -97,7 +97,8 @@ os.chdir('C:/Users/ejl9900/Desktop/Data Science/MSDS498/Data')
 df = pd.read_csv('Capstone Cencus Data - data_table.csv').set_index('city_name')
 
 #banner
-st.image('Buffalo-Bills-banner.jpg')
+banner = Image.open("./Images/Buffalo-Bills-banner.jpg")
+st.image(banner)
 
 # dashboard title
 st.title('Buffalo Bills Market Relocation Dashboard')
