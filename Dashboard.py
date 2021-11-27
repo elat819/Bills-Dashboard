@@ -143,7 +143,7 @@ col1, col2 = st.columns(2)
 if nm1 == 'San Antonio':
     image1 = 'SA_skyline.jpg'
 elif nm1 == 'Austin':
-    image1 = 'Austin.png'
+    image1 = Image.open("./plots/Austin.png")
 elif nm1 == 'Louisville':
     image1 = 'Louisville.png'
 elif nm1 == 'Oklahoma City':
