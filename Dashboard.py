@@ -141,30 +141,30 @@ nm2 = str(market_df2.iloc[0]['city_name2'])
 col1, col2 = st.columns(2)
 
 if nm1 == 'San Antonio':
-    image1 = 'SA_skyline.jpg'
+    image1 = Image.open("./plots/SA_skyline.jpg")
 elif nm1 == 'Austin':
     image1 = Image.open("./plots/Austin.png")
 elif nm1 == 'Louisville':
-    image1 = 'Louisville.png'
+    image1 = Image.open("./plots/Louisville.png")
 elif nm1 == 'Oklahoma City':
-    image1 = 'OKC.png'
+    image1 = Image.open("./plots/OKC.png")
 elif nm1 == 'Portland':
-    image1 = 'Portland.png'
+    image1 = Image.open("./plots/Portland.png")
 elif nm1 == 'Buffalo':
-    image1 = 'Buffalo.jpeg'
+    image1 = Image.open("./plots/Buffalo.jpeg")
     
 if nm2 == 'San Antonio':
-    image2 = 'SA_skyline.jpg'
+    image2 = Image.open("./plots/SA_skyline.jpg")
 elif nm2 == 'Austin':
-    image2 = 'Austin.png'
+    image2 = Image.open("./plots/Austin.png")
 elif nm2 == 'Louisville':
-    image2 = 'Louisville.png'
+    image2 = Image.open("./plots/Louisville.png")
 elif nm2 == 'Oklahoma City':
-    image2 = 'OKC.png'
+    image2 = Image.open("./plots/OKC.png")
 elif nm2 == 'Portland':
-    image2 = 'Portland.png'
+    image2 = Image.open("./plots/Portland.png")
 elif nm2 == 'Buffalo':
-    image2 = 'Buffalo.jpeg'
+    image2 = Image.open("./plots/Buffalo.jpeg")
 
 col1.image(image1)
 col2.image(image2)
