@@ -177,7 +177,7 @@ col2.image(image2)
 
 #create columns for row 2
 col1, col2, col3, col4, col5, col6, col7, col8 = st.beta_columns(8)
-col1.metric(label = "Overall Rank", value = str(market_df1.iloc[0]['rank']))
+col1.beta_metric(label = "Overall Rank", value = str(market_df1.iloc[0]['rank']))
 col2.metric(label = "2010 Population", value = str("{:,}".format(market_df1.iloc[0]['pop2010'])))
 col3.metric(label = "2021 Population", value = str("{:,}".format(market_df1.iloc[0]['pop2021'])), 
                     delta = str("{:.2f}".format(tm_pop_change1)) + '% since 2010')
