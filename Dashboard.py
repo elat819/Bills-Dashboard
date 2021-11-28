@@ -40,8 +40,6 @@ def map_markets(market_ind):
     if market_ind == 'Both':
          url = 'https://raw.githubusercontent.com/elat819/Bills-Dashboard/main/Data/Capstone%20Cencus%20Data%20-%20data_table.csv'
          df_map = pd.read_csv(url).set_index('city_name')
-        #df_map = pd.read_csv(url).set_index('city_name') 
-        #df_map = pd.read_csv('Capstone Cencus Data - data_table.csv').set_index('city_name')
     elif market_ind == 'NFL':
         df_map = df.loc[df['target_city'] != 'x']
     elif market_ind == 'Target':
@@ -92,15 +90,9 @@ def map_markets(market_ind):
 
 st.set_page_config(page_title = "Buffalo Bills Relocation Dashboard", layout="wide")
 
-#os.chdir('C:/Users/ejl9900/Desktop/Data Science/MSDS498/Data')
-
 #get data for map
 url = 'https://raw.githubusercontent.com/elat819/Bills-Dashboard/main/Data/Capstone%20Cencus%20Data%20-%20data_table.csv'
 df = pd.read_csv(url).set_index('city_name')
-st.write(df)
-#df = pd.read_csv(url).set_index('city_name')
-#df = pd.read_csv('Capstone Cencus Data - data_table.csv').set_index('city_name')
-#df = load_data("./Data/Capstone Cencus Data - data_table.csv")
 
 #banner
 banner = Image.open("./Images/Buffalo-Bills-banner.jpg")
@@ -236,7 +228,7 @@ if not cities:
     st.error("Please select at least one city.")
 
 #build income chart
-#else:
+else:
     df_inc = df_tm1.loc[cities, 'per_capita_income']
     df_21pop = df_tm1.loc[cities, 'pop2021']
     df_pop_growth = df_tm1.loc[cities, 'growth_10']
@@ -269,6 +261,3 @@ if col2.button('Target Markets Only'):
 if col3.button('NFL and Target Markets'):
     map_filter = 'Both'
     map_markets(map_filter)
-
-
-#<p style="text-align: center;"><iframe src={logo}embed width="240" height="290" frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
