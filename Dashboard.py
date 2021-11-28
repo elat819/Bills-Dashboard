@@ -226,23 +226,23 @@ st.write('Select one or more of the target markets to see how they compare:')
 select_market = []
 
 #build multi-select drop down
-cities = st.multiselect("Choose Cities", list(df_tm1.index),["Austin","San Antonio","Louisville","Portland","Oklahoma City","Buffalo"])
+#cities = st.multiselect("Choose Cities", list(df_tm1.index),["Austin","San Antonio","Louisville","Portland","Oklahoma City","Buffalo"])
 
-if not cities:
-    st.error("Please select at least one city.")
+#if not cities:
+#    st.error("Please select at least one city.")
 
 #build income chart
-else:
-    df_inc = df_tm1.loc[cities, 'per_capita_income']
-    df_21pop = df_tm1.loc[cities, 'pop2021']
-    df_pop_growth = df_tm1.loc[cities, 'growth_10']
-    col1, col2, col3, col4 = st.columns(4)
-    col1.subheader('Per Capita Income')
-    col1.bar_chart(df_inc)
-    col2.subheader('2021 Population')
-    col2.bar_chart(df_21pop)
-    col3.subheader('% Population Growth Since 2010')
-    col3.bar_chart(df_pop_growth)
+#else:
+#    df_inc = df_tm1.loc[cities, 'per_capita_income']
+#    df_21pop = df_tm1.loc[cities, 'pop2021']
+#    df_pop_growth = df_tm1.loc[cities, 'growth_10']
+#    col1, col2, col3, col4 = st.columns(4)
+#    col1.subheader('Per Capita Income')
+#    col1.bar_chart(df_inc)
+#    col2.subheader('2021 Population')
+#    col2.bar_chart(df_21pop)
+#    col3.subheader('% Population Growth Since 2010')
+#    col3.bar_chart(df_pop_growth)
 
 st.write("")
 
@@ -255,16 +255,16 @@ st.markdown("### ** NFL & Target City Markets **")
 #create filter buttons for map
 st.write('Select a filter for the map, then click on the markers to see demographic info:')
 
-col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)  
-if col1.button('NFL Markets Only'):
-    map_filter= 'NFL'
-    map_markets(map_filter)
-if col2.button('Target Markets Only'):
-    map_filter = 'Target'
-    map_markets(map_filter)
-if col3.button('NFL and Target Markets'):
-    map_filter = 'Both'
-    map_markets(map_filter)
+#col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)  
+#if col1.button('NFL Markets Only'):
+#    map_filter= 'NFL'
+#    map_markets(map_filter)
+#if col2.button('Target Markets Only'):
+#    map_filter = 'Target'
+#    map_markets(map_filter)
+#if col3.button('NFL and Target Markets'):
+#    map_filter = 'Both'
+#    map_markets(map_filter)
 
 
 #<p style="text-align: center;"><iframe src={logo}embed width="240" height="290" frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
