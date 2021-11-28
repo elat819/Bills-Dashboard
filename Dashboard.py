@@ -124,7 +124,7 @@ select_market1 = []
 select_market2 = []
 
 #display drop downs
-col1, col2 = st.columns(2)
+col1, col2 = st.beta_columns(2)
 select_market1.append(col1.selectbox('First Market', df_tm1))
 select_market2.append(col2.selectbox('Second Market', df_tm2))
 
