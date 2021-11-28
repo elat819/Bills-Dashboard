@@ -91,7 +91,8 @@ st.set_page_config(page_title = "Buffalo Bills Relocation Dashboard", layout="wi
 #os.chdir('C:/Users/ejl9900/Desktop/Data Science/MSDS498/Data')
 
 #get data for map
-df = pd.read_csv('Capstone Cencus Data - data_table.csv').set_index('city_name')
+#df = pd.read_csv('Capstone Cencus Data - data_table.csv').set_index('city_name')
+df = load_data("./Data/Capstone Cencus Data - data_table.csv")
 
 #banner
 banner = Image.open("./Images/Buffalo-Bills-banner.jpg")
