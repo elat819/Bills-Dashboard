@@ -229,11 +229,16 @@ cities = st.multiselect("Choose Cities", list(df_tm1.index),["Austin","San Anton
 if not cities:
     st.error("Please select at least one city.")
 
-#build income chart
+#build charts
 else:
     df_inc = df_tm1.loc[cities, 'per_capita_income']
     df_21pop = df_tm1.loc[cities, 'pop2021']
     df_pop_growth = df_tm1.loc[cities, 'growth_10']
+    df_male_65 = df_tm1.loc[cities, 'single_male_hh_over65']
+    df_single_female = df_tm1.loc[cities, 'single_female_hh_childu18']
+    df_assoc_deg = df_tm1.loc[cities, 'associates_degree_o25']
+    df_grad_deg = df_tm1.loc[cities, 'grad_degree_o25']
+
     col1, col2, col3, col4 = st.columns(4)
     col1.subheader('Per Capita Income')
     col1.bar_chart(df_inc)
@@ -241,7 +246,17 @@ else:
     col2.bar_chart(df_21pop)
     col3.subheader('% Population Growth Since 2010')
     col3.bar_chart(df_pop_growth)
+    col4.subheader('Single Male Households Over 65')
+    col4.bar_chart(df_male_65)
 
+    col1, col2, col3 = st.columns(3)
+    col1.subheader('Single Female Households')
+    col1.bar_chart(df_single_female)
+    col2.subheader('Associates Degree Over 25')
+    col2.bar_chart(df_assoc_deg)
+    col3.subheader('Graduate Degree Over 25')
+    col3.bar_chart(df_grad_deg)
+     
 st.write("")
 
 #insert horizontal line
