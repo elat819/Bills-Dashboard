@@ -38,7 +38,7 @@ def map_markets(market_ind):
 
     if market_ind == 'Both':
          url = 'https://github.com/elat819/Bills-Dashboard/blob/a4dcc6a47bed2858a8383db9926b0a124080f6a5/Data/Capstone%20Cencus%20Data%20-%20data_table.csv'
-         df_map = pd.read_csv(url, index_col=0)
+         df_map = pd.read_csv(url, error_bad_lines=False, index_col=0)
         #df_map = pd.read_csv(url).set_index('city_name') 
         #df_map = pd.read_csv('Capstone Cencus Data - data_table.csv').set_index('city_name')
     elif market_ind == 'NFL':
@@ -95,7 +95,7 @@ st.set_page_config(page_title = "Buffalo Bills Relocation Dashboard", layout="wi
 
 #get data for map
 url = 'https://github.com/elat819/Bills-Dashboard/blob/a4dcc6a47bed2858a8383db9926b0a124080f6a5/Data/Capstone%20Cencus%20Data%20-%20data_table.csv'
-df = pd.read_csv(url, index_col=0)
+df = pd.read_csv(url, error_bad_lines=False, index_col=0)
 #df = pd.read_csv(url).set_index('city_name')
 #df = pd.read_csv('Capstone Cencus Data - data_table.csv').set_index('city_name')
 #df = load_data("./Data/Capstone Cencus Data - data_table.csv")
