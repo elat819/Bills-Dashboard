@@ -125,12 +125,14 @@ market_df1 = df_tm1[df_tm1['city_name2'].isin(select_market1)]
 tm_pop_change1 = market_df1.iloc[0]['growth_10'] * 100
 tm_growth_rank1 = str(market_df1.iloc[0]['growth_rank'])
 tm_income1 = market_df1.iloc[0]['per_capita_income']
+ovr_rank1 = str(market_df1.iloc[0]['rank'])
 
 #Filter df2 based on selection
 market_df2 = df_tm2[df_tm2['city_name2'].isin(select_market2)]
 tm_pop_change2 = market_df2.iloc[0]['growth_10'] * 100
 tm_growth_rank2 = str(market_df2.iloc[0]['growth_rank'])
 tm_income2 = market_df2.iloc[0]['per_capita_income']
+ovr_rank2 = str(market_df2.iloc[0]['rank'])
 
 #display images
 nm1 = str(market_df1.iloc[0]['city_name2'])
@@ -169,13 +171,13 @@ col2.image(image2)
 
 #create columns for row 2
 col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)
-col1.metric(label = "Overall Rank", value = str(market_df1.iloc[0]['rank']))
+col1.metric(label = "Overall Rank", value = ovr_rank1.replace('.0',''))
 col2.metric(label = "2010 Population", value = str("{:,}".format(market_df1.iloc[0]['pop2010'])))
 col3.metric(label = "2021 Population", value = str("{:,}".format(market_df1.iloc[0]['pop2021'])), 
                     delta = str("{:.2f}".format(tm_pop_change1)) + '% since 2010')
 col4.metric(label = "Population Growth Rank", value = tm_growth_rank1.replace('.0',''))
         
-col5.metric(label = "Overall Rank", value = str(market_df2.iloc[0]['rank']))
+col5.metric(label = "Overall Rank", value = ovr_rank2.replace('.0',''))
 col6.metric(label = "2010 Population", value = str("{:,}".format(market_df2.iloc[0]['pop2010'])))
 col7.metric(label = "2021 Population", value = str("{:,}".format(market_df2.iloc[0]['pop2021'])), 
                     delta = str("{:.2f}".format(tm_pop_change2)) + '% since 2010')                   
