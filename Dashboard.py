@@ -38,7 +38,7 @@ def map_markets(market_ind):
     m = folium.Map(location=[37.0902, -95.7129], zoom_start=4)
 
     if market_ind == 'Both':
-         url = ''https://raw.githubusercontent.com/elat819/Bills-Dashboard/main/Data/Capstone%20Cencus%20Data%20-%20data_table.csv''
+         url = 'https://raw.githubusercontent.com/elat819/Bills-Dashboard/main/Data/Capstone%20Cencus%20Data%20-%20data_table.csv'
          df_map = pd.read_csv(url).set_index('city_name')
         #df_map = pd.read_csv(url).set_index('city_name') 
         #df_map = pd.read_csv('Capstone Cencus Data - data_table.csv').set_index('city_name')
