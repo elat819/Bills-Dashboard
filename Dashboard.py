@@ -5,14 +5,11 @@
 
 import streamlit as st
 import pandas as pd
-from tkinter import *
-from tkinter import ttk
 import os
 from streamlit_folium import folium_static
 import folium
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-
 
 def summary_poster(pie_df):
      #MAKE SUBPLOTS
@@ -186,7 +183,6 @@ col8.metric(label = "Population Growth Rank", value = tm_growth_rank2.replace('.
 
 #create columns for row 3                   
 col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)                 
-#col1.metric(label = "Population Growth Rank", value = tm_growth_rank1.replace('.0',''))
 col1.metric(label = "Per Capita Income", value = ("$" + str("{:,}".format(tm_income1))))
 col2.metric(label = "# Pro Sports Teams:", value = str(market_df1.iloc[0]['pro_teams']))
 col3.metric(label = "# Stadiums (seats > 25K)", value = str(market_df1.iloc[0]['stadium_count']))
@@ -196,7 +192,6 @@ col6.metric(label = "# Pro Sports Teams:", value = str(market_df2.iloc[0]['pro_t
 col7.metric(label = "# Stadiums (seats > 25K)", value = str(market_df2.iloc[0]['stadium_count']))
 
 #respective education population
-#pie_values = (market_df1.iloc[0]['highschoolgrad_o25','associates_degree_o25'])
 pie_values1 = (market_df1.iloc[0][74:78])
 pie_values2 = (market_df2.iloc[0][74:78])
 
@@ -226,23 +221,23 @@ st.write('Select one or more of the target markets to see how they compare:')
 select_market = []
 
 #build multi-select drop down
-#cities = st.multiselect("Choose Cities", list(df_tm1.index),["Austin","San Antonio","Louisville","Portland","Oklahoma City","Buffalo"])
+cities = st.multiselect("Choose Cities", list(df_tm1.index),["Austin","San Antonio","Louisville","Portland","Oklahoma City","Buffalo"])
 
 #if not cities:
-#    st.error("Please select at least one city.")
+    st.error("Please select at least one city.")
 
 #build income chart
 #else:
-#    df_inc = df_tm1.loc[cities, 'per_capita_income']
-#    df_21pop = df_tm1.loc[cities, 'pop2021']
-#    df_pop_growth = df_tm1.loc[cities, 'growth_10']
-#    col1, col2, col3, col4 = st.columns(4)
-#    col1.subheader('Per Capita Income')
-#    col1.bar_chart(df_inc)
-#    col2.subheader('2021 Population')
-#    col2.bar_chart(df_21pop)
-#    col3.subheader('% Population Growth Since 2010')
-#    col3.bar_chart(df_pop_growth)
+    df_inc = df_tm1.loc[cities, 'per_capita_income']
+    df_21pop = df_tm1.loc[cities, 'pop2021']
+    df_pop_growth = df_tm1.loc[cities, 'growth_10']
+    col1, col2, col3, col4 = st.columns(4)
+    col1.subheader('Per Capita Income')
+    col1.bar_chart(df_inc)
+    col2.subheader('2021 Population')
+    col2.bar_chart(df_21pop)
+    col3.subheader('% Population Growth Since 2010')
+    col3.bar_chart(df_pop_growth)
 
 st.write("")
 
@@ -255,16 +250,16 @@ st.markdown("### ** NFL & Target City Markets **")
 #create filter buttons for map
 st.write('Select a filter for the map, then click on the markers to see demographic info:')
 
-#col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)  
-#if col1.button('NFL Markets Only'):
-#    map_filter= 'NFL'
-#    map_markets(map_filter)
-#if col2.button('Target Markets Only'):
-#    map_filter = 'Target'
-#    map_markets(map_filter)
-#if col3.button('NFL and Target Markets'):
-#    map_filter = 'Both'
-#    map_markets(map_filter)
+col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)  
+if col1.button('NFL Markets Only'):
+    map_filter= 'NFL'
+    map_markets(map_filter)
+if col2.button('Target Markets Only'):
+    map_filter = 'Target'
+    map_markets(map_filter)
+if col3.button('NFL and Target Markets'):
+    map_filter = 'Both'
+    map_markets(map_filter)
 
 
 #<p style="text-align: center;"><iframe src={logo}embed width="240" height="290" frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
