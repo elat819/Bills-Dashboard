@@ -8,8 +8,8 @@ import pandas as pd
 import os
 #from streamlit_folium import folium_static
 #import folium
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
+#import plotly.graph_objects as go
+#from plotly.subplots import make_subplots
 
 def summary_poster(pie_df):
      #MAKE SUBPLOTS
