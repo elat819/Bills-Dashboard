@@ -223,7 +223,7 @@ select_market = []
 #build multi-select drop down
 cities = st.multiselect("Choose Cities", list(df_tm1.index),["Austin","San Antonio","Louisville","Portland","Oklahoma City","Buffalo"])
 
-#if not cities:
+if not cities:
     st.error("Please select at least one city.")
 
 #build income chart
