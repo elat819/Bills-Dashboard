@@ -88,7 +88,7 @@ def map_markets(market_ind):
 
 st.set_page_config(page_title = "Buffalo Bills Relocation Dashboard", layout="wide")
 
-os.chdir('C:/Users/ejl9900/Desktop/Data Science/MSDS498/Data')
+#os.chdir('C:/Users/ejl9900/Desktop/Data Science/MSDS498/Data')
 
 #get data for map
 df = pd.read_csv('Capstone Cencus Data - data_table.csv').set_index('city_name')
