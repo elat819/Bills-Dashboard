@@ -144,7 +144,7 @@ tm_income2 = market_df2.iloc[0]['per_capita_income']
 nm1 = str(market_df1.iloc[0]['city_name2'])
 nm2 = str(market_df2.iloc[0]['city_name2'])
 #If df_tm1 = 
-col1, col2 = st.columns(2)
+col1, col2 = st.beta_columns(2)
 
 if nm1 == 'San Antonio':
     image1 = Image.open("./plots/SA_skyline.jpg")
@@ -176,7 +176,7 @@ col1.image(image1)
 col2.image(image2)
 
 #create columns for row 2
-col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)
+col1, col2, col3, col4, col5, col6, col7, col8 = st.beta_columns(8)
 col1.metric(label = "Overall Rank", value = str(market_df1.iloc[0]['rank']))
 col2.metric(label = "2010 Population", value = str("{:,}".format(market_df1.iloc[0]['pop2010'])))
 col3.metric(label = "2021 Population", value = str("{:,}".format(market_df1.iloc[0]['pop2021'])), 
@@ -191,7 +191,7 @@ col8.metric(label = "Population Growth Rank", value = tm_growth_rank2.replace('.
 
 
 #create columns for row 3                   
-col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)                 
+col1, col2, col3, col4, col5, col6, col7, col8 = st.beta_columns(8)                 
 col1.metric(label = "Per Capita Income", value = ("$" + str("{:,}".format(tm_income1))))
 col2.metric(label = "# Pro Sports Teams:", value = str(market_df1.iloc[0]['pro_teams']))
 col3.metric(label = "# Stadiums (seats > 25K)", value = str(market_df1.iloc[0]['stadium_count']))
@@ -207,12 +207,12 @@ pie_values2 = (market_df2.iloc[0][74:78])
 #insert horizontal line
 st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#333;" /> """, unsafe_allow_html=True)
 
-col1, col2 = st.columns(2)
+col1, col2 = st.beta_columns(2)
 col1.markdown("### ** Education breakdown **") 
 col2.markdown("### ** Education breakdown **")
 
 #create columns for pie charts
-col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)  
+col1, col2, col3, col4, col5, col6, col7, col8 = st.beta_columns(8)  
 
 fig = summary_poster(pie_values1)
 col1.write(fig)
@@ -240,7 +240,7 @@ if not cities:
     df_inc = df_tm1.loc[cities, 'per_capita_income']
     df_21pop = df_tm1.loc[cities, 'pop2021']
     df_pop_growth = df_tm1.loc[cities, 'growth_10']
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3, col4 = st.beta_columns(4)
     col1.subheader('Per Capita Income')
     col1.bar_chart(df_inc)
     col2.subheader('2021 Population')
@@ -259,7 +259,7 @@ st.markdown("### ** NFL & Target City Markets **")
 #create filter buttons for map
 st.write('Select a filter for the map, then click on the markers to see demographic info:')
 
-col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)  
+col1, col2, col3, col4, col5, col6, col7, col8 = st.beta_columns(8)  
 if col1.button('NFL Markets Only'):
     map_filter= 'NFL'
     map_markets(map_filter)
