@@ -15,7 +15,7 @@ from PIL import Image
 def summary_poster(pie_df):
      #MAKE SUBPLOTS
     fig = make_subplots(
-        specs=[[{"type": "pie"}],],
+        specs=[[{"type": "pie"}],])
         #subplot_titles=('Over 25 - Education Breakdown'))
     pie_data = pie_df
     fig.add_trace(go.Pie(labels = pie_data.index,
