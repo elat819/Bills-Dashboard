@@ -141,7 +141,7 @@ nm2 = str(market_df2.iloc[0]['city_name2'])
 col1, col2 = st.columns(2)
 
 if nm1 == 'San Antonio':
-    image1 = Image.open("./Images/SA_skyline.jpg")
+    image1 = Image.open("./Images/San_Antonio.png")
 elif nm1 == 'Austin':
     image1 = Image.open("./Images/Austin.png")
 elif nm1 == 'Louisville':
@@ -154,7 +154,7 @@ elif nm1 == 'Buffalo':
     image1 = Image.open("./Images/Buffalo.jpeg")
     
 if nm2 == 'San Antonio':
-    image2 = Image.open("./Images/SA_skyline.jpg")
+    image2 = Image.open("./Images/San_Antonio.png")
 elif nm2 == 'Austin':
     image2 = Image.open("./Images/Austin.png")
 elif nm2 == 'Louisville':
