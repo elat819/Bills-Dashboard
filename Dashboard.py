@@ -257,7 +257,6 @@ if not cities:
 
 #build charts
 else:
-
     col1, col2, col3, col4 = st.columns(4)
     bar_plots(df_tm1.loc[cities, 'per_capita_income'], 'Per Capita Income', 'city_name:N', 'Target Market', 'per_capita_income:Q',
                        'city_name','per_capita_income', 300, 300, '1')
