@@ -10,9 +10,9 @@ from streamlit_folium import folium_static
 import folium
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-from PIL import Image
+import altair as alt
 
-def summary_poster(pie_df):
+def pie_chart(pie_df):
      #MAKE SUBPLOTS
     fig = make_subplots(
         specs=[[{"type": "pie"}],])
@@ -59,6 +59,9 @@ def map_markets(market_ind):
         stadiums = row.stadium_count
         income = "{:,}".format(row.per_capita_income)
         avg_household_size = row.avg_household_size
+        fit_score = row.pred_1
+        final_rank = row.final_rank
+        final_rank = int(final_rank)
         
         #create marker pop-up html
         city_html = folium.Html(f"""<p style="text-align: Center;"><strong><span style="font-family: Didot, serif; font-size: 18px;">{team_name}</span></strong></p>
@@ -67,7 +70,9 @@ def map_markets(market_ind):
         Pop. Density per sq. mile: {density}<br>
         Per Capita Income: ${income}<br>
         # of Professional Teams: {num_teams}<br>
-        # of Stadiums: {stadiums}</span></p>
+        # of Stadiums: {stadiums}<br>
+        Final Ranking: {final_rank}<br>
+        NFL Market Fit Score: {fit_score}</span></p>
         """, script=True)
 
         # add marker for city locations
@@ -80,13 +85,34 @@ def map_markets(market_ind):
     
         folium.Marker(
             location=location, 
-            #popup=team_name, 
             popup=popup,
             tooltip=tooltip
         ).add_to(m)
     
     # call to render Folium map in Streamlit
     folium_static(m)
+
+def bar_plots(df, title, x, x_lbl, y, tt_x, tt_y, width, height, col):
+    df = df.sort_values(ascending=False)
+    df = df.to_frame().reset_index()
+   
+    chart = (alt.Chart(df, title = title).mark_bar().encode(
+    x=alt.X(x, title = x_lbl, sort='y'),
+    y=alt.Y(y, title = title, sort='-y'),
+    tooltip = [tt_x,tt_y]
+    )
+    .interactive()
+    .properties(width = width, height = height)
+    )
+    
+    if col == '1':
+        col1.altair_chart(chart)
+    elif col  == '2':
+        col2.altair_chart(chart)
+    elif col  == '3':
+        col3.altair_chart(chart)    
+    elif col  == '4':
+        col4.altair_chart(chart)
 
 st.set_page_config(page_title = "Buffalo Bills Relocation Dashboard", layout="wide")
 
@@ -208,10 +234,10 @@ col2.markdown("### ** Education breakdown **")
 #create columns for pie charts
 col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)  
 
-fig = summary_poster(pie_values1)
+fig = pie_chart(pie_values1)
 col1.write(fig)
 
-fig = summary_poster(pie_values2)
+fig = pie_chart(pie_values2)
 col5.write(fig)
 
 #insert horizontal line
@@ -231,32 +257,17 @@ if not cities:
 
 #build charts
 else:
-    df_inc = df_tm1.loc[cities, 'per_capita_income']
-    df_21pop = df_tm1.loc[cities, 'pop2021']
-    df_pop_growth = df_tm1.loc[cities, 'growth_10']
-    df_male_65 = df_tm1.loc[cities, 'single_male_hh_over65']
-    df_single_female = df_tm1.loc[cities, 'single_female_hh_childu18']
-    df_assoc_deg = df_tm1.loc[cities, 'associates_degree_o25']
-    df_grad_deg = df_tm1.loc[cities, 'grad_degree_o25']
 
     col1, col2, col3, col4 = st.columns(4)
-    col1.subheader('Per Capita Income')
-    col1.bar_chart(df_inc)
-    col2.subheader('2021 Population')
-    col2.bar_chart(df_21pop)
-    col3.subheader('% Population Growth Since 2010')
-    col3.bar_chart(df_pop_growth)
-    col4.subheader('Single Male Households Over 65')
-    col4.bar_chart(df_male_65)
+    bar_plots(df_tm1.loc[cities, 'per_capita_income'], 'Per Capita Income', 'city_name:N', 'Target Market', 'per_capita_income:Q',
+                       'city_name','per_capita_income', 300, 300, '1')
+    bar_plots(df_tm1.loc[cities, 'pop2021'], '2021 Population', 'city_name:N', 'Target Market', 'pop2021:Q',
+                       'city_name','pop2021', 300,300,'2')
+    bar_plots(df_tm1.loc[cities, 'growth_10'], 'Population Growth since 2010', 'city_name:N', 'Target Market', 'growth_10:Q',
+                       'city_name','growth_10', 300,300,'3')
+    bar_plots(df_tm1.loc[cities, 'pred_1'], 'NFL Market Fit Score', 'city_name:N', 'Target Market', 'pred_1:Q',
+                       'city_name','pred_1', 300,300,'4')       
 
-    col1, col2, col3 = st.columns(3)
-    col1.subheader('Single Female Households')
-    col1.bar_chart(df_single_female)
-    col2.subheader('Associates Degree Over 25')
-    col2.bar_chart(df_assoc_deg)
-    col3.subheader('Graduate Degree Over 25')
-    col3.bar_chart(df_grad_deg)
-     
 st.write("")
 
 #insert horizontal line
