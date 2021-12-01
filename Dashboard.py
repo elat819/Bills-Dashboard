@@ -11,6 +11,7 @@ import folium
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import altair as alt
+import PIL as image
 
 def pie_chart(pie_df):
      #MAKE SUBPLOTS
