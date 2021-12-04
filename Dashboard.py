@@ -62,7 +62,7 @@ def map_markets(market_ind):
         avg_household_size = row.avg_household_size
         fit_score = row.pred_1
         final_rank = row.final_rank
-        final_rank = int(final_rank)
+        final_rank = str(final_rank)
         
         #create marker pop-up html
         city_html = folium.Html(f"""<p style="text-align: Center;"><strong><span style="font-family: Didot, serif; font-size: 18px;">{team_name}</span></strong></p>
